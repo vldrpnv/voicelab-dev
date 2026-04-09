@@ -1,43 +1,47 @@
 Problem:
-- Current situation: Always-on Mac mini plus HomeAssistant Voice Preview hardware; current software (Home Assistant conversation) is slow, non-interruptible and underutilizes available HW.
-- Pain: Slow ASR/TTS, long generation latencies, no interrupt/cut-in support, and brittle multi-tool orchestration make voice interactions feel unnatural and unusable for longer or complex tasks.
-- Why alternatives fail: Existing voice/conversation engines target phone/call flows and batch-oriented LLM use; they lack low-latency streaming ASR->LLM->TTS pipelines, router-based model dispatch, and robust state transitions required for device/satellite orchestration.
+- Current situation: Always-on Mac mini plus HomeAssistant Voice Preview hardware; current software is optimized for basic commands, not full executive-assistant behavior.
+- Pain: The system handles short interactions but does not yet provide consistently high-quality answers for open-ended, cross-domain questions or reliable end-to-end task execution.
+- Why alternatives fail: Typical voice stacks optimize either latency or answer quality, but not both; they often lack robust routing, tool orchestration, and quality controls needed for an executive assistant that must answer broadly and well.
 
 Trigger moment:
-- Frustration with slow, non-interruptible voice interactions and desire to harness local HW for low-latency, interruptible conversational control of devices and external "satellites."
+- Need to evolve from a fast home-automation voice interface into a full-scale executive assistant that can answer any question with strong quality and execute complex tasks across tools/services.
 
 Target user:
-- Home automation power-users, integrators, and researchers who self-host and need low-latency voice agents to orchestrate devices and external services.
+- Power users, operators, founders/executives, and researchers who need a local-first assistant that can handle broad questioning, planning, and execution while preserving low-latency conversational UX.
 
 User maturity:
 - Technical; comfortable with self-hosting, Home Assistant, macOS/Linux servers, and deploying local ML models or connecting to remote LLMs.
 
 Core workflow:
 1. Continuous/streaming ASR ingests audio and pushes partial transcripts to a router model.
-2. Router decides: quick response locally, stream to an LLM, or forward to a satellite/tool; may emit an immediate "thinking/processing" acknowledgement.
-3. Chosen model/tool generates streaming text that is turned into interruptible TTS while orchestrating device/satellite actions and maintaining conversation state.
+2. Router classifies intent/question complexity, chooses local/remote/tool paths, and emits immediate acknowledgement when needed.
+3. Assistant composes an answer using retrieval/reasoning/tool outputs, executes requested actions, and returns a streaming, interruptible response.
+4. Quality layer checks answer quality (correctness/completeness/clarity/uncertainty signaling) before or during delivery.
 
 Primary output:
-- A local-first, latency-optimized conversational agent providing streaming ASR, router-based dispatch, interruptible streaming TTS, and device/satellite orchestration.
+- A local-first, full-scale executive assistant that responds well to broad user questions and executes multi-step tasks through reliable orchestration, while preserving low-latency interruptible conversation.
 
 First release scope:
-- Streaming ASR ingestion and partial-text forwarding; simple router model with local/remote dispatch rules; integration with Home Assistant and a satellite proxy; interruptible TTS with low-latency playback.
+- Streaming ASR ingestion and partial-text forwarding.
+- Router model with local/remote/tool dispatch rules for both simple commands and open-ended questions.
+- Answer-quality baseline: explicit uncertainty handling, clarification prompts for ambiguity, and concise structured responses for factual/operational queries.
+- Integration with Home Assistant and a satellite/tool proxy; interruptible TTS with low-latency playback.
 
 Non-goals:
 - Not a cloud-managed, multi-tenant assistant on first release.
-- Not a full general-purpose chat UI or phone-call oriented system.
+- Not a phone-call oriented system.
 
 Differentiator:
-- Designed for low-latency streaming interaction, partial-response/acknowledgement UX, router-model dispatch that redirects heavy work to specialized models or satellites, and guaranteed interruptible TTS and stable state transitions.
+- Combines low-latency streaming interaction with a high answer-quality bar for broad question answering, plus router-based orchestration for specialized tools/satellites and guaranteed interruptible TTS.
 
 Constraints:
 - Target hardware: mac mini (always-on) and HomeAssistant Voice Preview devices.
 - Prefer local-first processing for privacy and latency; LLM compute may be limited, so routing to satellites or remote models is required.
 
 Must be true:
-- A user can hold a natural, low-latency spoken conversation with the system.
-- without experiencing multi-second TTS/response stalls or inability to interrupt.
-- and can verify device/satellite actions and see a stable conversation state that recovers to a sensible default.
+- A user can ask broad, open-ended questions and receive high-quality answers that are clear, relevant, and explicit about uncertainty.
+- A user can hold a natural, low-latency spoken conversation without multi-second stalls or inability to interrupt.
+- A user can request multi-step actions and verify outcomes through stable conversation/tool state that recovers to a sensible default.
 
 One-sentence product statement:
-- A local-first, latency-optimized conversational agent that streams speech recognition into a router-driven LLM pipeline, supports interruptible streaming TTS, and orchestrates connected devices and satellites for complex tasks.
+- A local-first, latency-optimized executive assistant that answers broad user questions well, streams speech recognition into a router-driven reasoning/execution pipeline, supports interruptible TTS, and orchestrates connected devices and satellites for complex tasks.

@@ -1,32 +1,35 @@
 # Domain Context
 
 ## One-sentence domain definition
-Low-latency local-first conversational orchestration for home automation and external services (satellites).
+Local-first executive-assistant orchestration that combines low-latency voice interaction with high-quality broad question answering and dependable task execution across tools/services.
 
 ## Primary users / actors
-- Home automation power-users / tinkerers who self-host.
+- Power users and operators (including founder/executive-style users) who self-host and need reliable high-quality assistance.
 - Home Assistant runtime and device firmware (HomeAssistant Voice Preview HW).
 - Remote LLMs, satellite services, and integrators that provide specialized capability.
 
 ## Core user goals
 - Low-latency natural voice control of devices.
+- High-quality answers for broad, open-ended questions.
 - Reliable orchestration of satellites and remote tools for heavy tasks.
 - Predictable, interruptible streaming responses (TTS) and acknowledgements.
 
 ## Domain objects / entities
 - ASR partials / transcripts
 - Router model (decisioning)
+- Quality layer (answer validation, uncertainty signaling, clarification policy)
 - Satellites / external tools
 - Conversation session / state
 
 ## Key workflows
 1. Streaming ASR -> router -> dispatch -> interruptible TTS playback and device actions.
 2. Router forwards heavy queries to satellite/remote LLM and emits interim "thinking" acknowledgement.
-3. State management: detect satellite/tool timeouts or failures and revert to a stable default state.
+3. Quality pass: evaluate correctness/completeness/clarity, request clarification on ambiguity, and signal uncertainty when needed.
+4. State management: detect satellite/tool timeouts or failures and revert to a stable default state.
 
 ## Boundaries
 ### In scope
-- Local ASR/TTS pipelines, router decisioning, Home Assistant integration, satellite proxying and orchestration.
+- Local ASR/TTS pipelines, router decisioning, quality-layer behavior, Home Assistant integration, satellite proxying and orchestration.
 
 ### Out of scope
 - Cloud-hosted multi-tenant assistant or phone-call oriented call-center workflows.
@@ -35,10 +38,12 @@ Low-latency local-first conversational orchestration for home automation and ext
 - Latency targets: sub-500ms for interim ACKs, sub-2s for short replies.
 - Privacy: local-first processing unless user explicitly routes to remote models.
 - Fallback: router must emit an interim acknowledgement and gracefully forward or retry on heavy queries.
+- Quality: assistant must prefer truthful/helpful responses, explicitly state uncertainty, and ask clarifying questions when intent is under-specified.
 
 ## Data and state
 - ASR partials and final transcripts
 - Conversation sessions/state (active tool, timeouts, history)
+- Quality signals (confidence/uncertainty markers, clarification events)
 - Router decisions, logs and telemetry
 
 ## External systems and integrations
@@ -50,6 +55,8 @@ Low-latency local-first conversational orchestration for home automation and ext
 - Router misclassification leads to wrong dispatch and added latency.
 - Satellite or remote LLM timeouts or slow responses; requires interim ACK and fallback.
 - Non-interruptible TTS causing poor UX and inability to cut in.
+- Overconfident low-quality answers; requires uncertainty signaling and clarification flow.
 
 ## Open questions
 - How to persist conversation state versus keeping it ephemeral only (trade-offs for privacy, debugging, and recovery).
+- Which quality metrics should gate release readiness for "respond WELL" expectations (factuality, task completion rate, user-rated helpfulness).

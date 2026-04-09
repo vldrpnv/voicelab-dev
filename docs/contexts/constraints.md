@@ -11,6 +11,7 @@
 - Local-first processing by default; remote models are used only when explicitly configured.
 - Strict latency targets: interim ACK in <500ms and short replies in <2s under normal conditions.
 - Interruptible TTS behavior is required to support natural cut-ins.
+- Assistant must maintain a high quality bar for broad question answering: clear responses, explicit uncertainty, and clarification requests when intent is ambiguous.
 
 ## Strong preferences
 <!-- Important constraints that guide decisions, but may be relaxed with justification. -->
@@ -39,6 +40,7 @@
 - Multi-user operation is required, including per-user configuration for LLM/TTS.
 - Phone-calling/telephony workflows are out of scope.
 - UX must prioritize conversational naturalness (streaming + interruption).
+- System scope explicitly includes full-scale executive-assistant behavior: answering broad user questions and executing multi-step tasks across connected tools/services.
 
 ## Data and privacy constraints
 <!-- What data may be stored, what must stay local, what may leave the machine, retention expectations. -->
@@ -53,6 +55,7 @@
 - Use structured telemetry/logging externally for observability and debugging.
 - Maintain timeout and fallback behavior for satellites/providers to preserve stable UX.
 - Keep architecture modular to enable provider replacement without full rewrites.
+- Track and review quality KPIs (e.g., user-rated helpfulness, factuality proxy, clarification effectiveness, and task completion rate).
 
 ## Agent workflow constraints
 <!-- Constraints specific to Roo Code, git workflows, prompts, file-based memory, command usage, etc. -->
@@ -72,6 +75,7 @@
 
 - Accept occasional response-quality drop on local fallback to keep latency targets.
 - Accept higher implementation complexity to achieve interruptible streaming UX.
+- Accept added orchestration/validation overhead to sustain "respond WELL" quality expectations.
 
 ## Explicit tradeoffs rejected
 <!-- Tempting directions that should be avoided because they violate the desired operating model. -->
@@ -84,3 +88,4 @@
 
 - Policy for multi-user isolation boundaries (config, history, and runtime quotas).
 - Whether transcript retention should be configurable by user/profile and for how long.
+- Which minimum quality thresholds should gate production rollout for executive-assistant capabilities.
