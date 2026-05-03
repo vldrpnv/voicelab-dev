@@ -1,11 +1,13 @@
 # voicelab-dev
 
-A local-first, latency-optimized executive assistant that answers broad user questions well, streams speech recognition into a router-driven reasoning/execution pipeline, supports interruptible TTS, and orchestrates connected devices and satellites for complex tasks.
+A local-first, latency-optimized executive assistant. Built layer by layer, starting from a walking skeleton.
+
+> Current focus: **M0 — Walking Skeleton** — a minimal end-to-end pipeline with fake components, proving the architecture before building the real system.
 
 ## Repository Structure
 
 ```
-docs/           Global documentation: contexts, ADRs, requirements, discussions, MVP
+docs/           Global planning: roadmap, MVP slice, ADRs, requirements, process rules
 firmware/       Satellite and device firmware
 services/       Core server-side services (assistant-core, router, tts-output, observability)
 integrations/   Adapters to external systems (home-assistant, weather, shopping-list)
@@ -15,16 +17,13 @@ tests/          Cross-component contract, end-to-end, fixture, and golden tests
 .github/        Workflows, issue templates, PR template
 ```
 
-## Key Documents
+## Start Here
 
-- [Product context](docs/contexts/product.md)
-- [Architecture context](docs/contexts/architecture.md)
-- [Global requirements](docs/requirements/global-requirements.md)
-- [MVP slice](docs/mvp/mvp-slice.md)
-- [MVP acceptance criteria](docs/mvp/acceptance-criteria.md)
-- [ADRs](docs/adr/)
-- [Unresolved items and open questions](docs/discussions/unresolved-items-and-open-questions.md)
-
-## Development Principles
-
-See [2026-05-03 discussion summary](docs/discussions/2026-05-03-agent-assisted-development-and-fallbacks.md) for the full development principles list.
+| Document | Purpose |
+|---|---|
+| [docs/roadmap.md](docs/roadmap.md) | Workstreams, milestones, and planning priorities |
+| [docs/mvp-slice.md](docs/mvp-slice.md) | M0 walking skeleton scope and success criteria |
+| [docs/development-process.md](docs/development-process.md) | How to plan and execute issues |
+| [docs/issue-planning-rules.md](docs/issue-planning-rules.md) | Rules for creating issues that are safe for humans and agents |
+| [docs/adr/](docs/adr/) | Global architectural decision records |
+| [docs/mvp/m0-walking-skeleton.md](docs/mvp/m0-walking-skeleton.md) | Detailed M0 spec and acceptance criteria |
