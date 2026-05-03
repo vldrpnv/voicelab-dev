@@ -1,7 +1,7 @@
 # ADR conventions
 
 ## Naming
-- Use `ADR-XXXX-short-title.md` (zero-padded numeric id).
+- Use `0001-short-title.md` (zero-padded numeric id).
 
 ## Minimum header
 - Title
