@@ -1,0 +1,30 @@
+name: Deploy (Private)
+
+# Triggered manually or after a release tag push.
+# Deploys to the private home node over a secure channel.
+# Secrets are sourced from the repository's encrypted secret store — never committed.
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment"
+        required: true
+        default: "home"
+
+jobs:
+  deploy:
+    name: Deploy to Private Node
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy
+        run: |
+          echo "Deployment to private node not yet configured."
+          echo "See docs/discussions/unresolved-items-and-open-questions.md for the private-network deployment model decision."
+        # TODO: Replace with actual deployment steps once ADR-0008 is written
+        # and the deployment mechanism is defined.
