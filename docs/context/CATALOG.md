@@ -13,3 +13,8 @@ Purpose: map context indexes so agents can load indexes first and avoid unnecess
 ## Rule
 - Read only the indexes required for the active task.
 - From each index, open only the specific target docs needed.
+
+## Current state summary
+- Domain context docs currently live in `docs/contexts/`.
+- Requirements and MVP specs currently serve as API/data/testing references.
+- Operational docs are currently CI/workflow-oriented; dedicated runbooks are not yet present.
