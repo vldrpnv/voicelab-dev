@@ -17,6 +17,8 @@ jobs:
     name: Deploy to Private Node
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
 
