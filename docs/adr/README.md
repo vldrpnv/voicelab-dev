@@ -6,7 +6,7 @@
 ## Minimum header
 - Title
 - Status
-- Date
+- Date (recommended for new ADRs; legacy ADRs may omit it)
 - Context
 - Decision
 - Consequences

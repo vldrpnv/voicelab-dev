@@ -19,6 +19,7 @@ Implement changes with minimal token usage and high traceability.
 4. Load only relevant index files first:
    - `docs/context/CATALOG.md`
    - `docs/adr/ADR-INDEX.md`
+   - `docs/context/` contains index/catalog files; `docs/contexts/` contains narrative context documents referenced by those indexes.
    - One or more of:
      - `docs/context/domains/DOMAIN-INDEX.md`
      - `docs/context/apis/API-INDEX.md`
