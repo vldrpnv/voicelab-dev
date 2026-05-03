@@ -1,6 +1,6 @@
 name: Deploy (Private)
 
-# Triggered manually or after a release tag push.
+# Triggered manually or after a release tag push (e.g. v*).
 # Deploys to the private home node over a secure channel.
 # Secrets are sourced from the repository's encrypted secret store — never committed.
 
@@ -11,6 +11,9 @@ on:
         description: "Target environment"
         required: true
         default: "home"
+  push:
+    tags:
+      - "v*"
 
 jobs:
   deploy:

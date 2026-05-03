@@ -27,3 +27,4 @@ tests/          Cross-component contract, end-to-end, fixture, and golden tests
 | [docs/issue-planning-rules.md](docs/issue-planning-rules.md) | Rules for creating issues that are safe for humans and agents |
 | [docs/adr/](docs/adr/) | Global architectural decision records |
 | [docs/mvp/m0-walking-skeleton.md](docs/mvp/m0-walking-skeleton.md) | Detailed M0 spec and acceptance criteria |
+| [docs/mvp/mvp-slice.md](docs/mvp/mvp-slice.md) | Broader MVP scope, decisions, and success criteria |
